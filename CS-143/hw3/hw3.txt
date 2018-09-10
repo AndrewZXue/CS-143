@@ -1,0 +1,260 @@
+Zhouyang Xue
+104629708
+HW3 CS143
+
+PART I
+---------------------------------------------------------------------
+SELECT
+	company,
+	SUM(CASE WHEN (value = "agile-dev") THEN 1 ELSE 0 END) as "agile-dev",
+	SUM(CASE WHEN (value = "benefit-company") THEN 1 ELSE 0 END) as "benefit-company",
+	SUM(CASE WHEN (value = "bonded-by-product") THEN 1 ELSE 0 END) as "bonded-by-product",
+	SUM(CASE WHEN (value = "continuous-delivery") THEN 1 ELSE 0 END) as "continuous-delivery",
+	SUM(CASE WHEN (value = "creative-innovative") THEN 1 ELSE 0 END) as "creative-innovative",
+	SUM(CASE WHEN (value = "cross-dep") THEN 1 ELSE 0 END) as "cross-dep",
+	SUM(CASE WHEN (value = "customer-first") THEN 1 ELSE 0 END) as "customer-first",
+	SUM(CASE WHEN (value = "data-driven") THEN 1 ELSE 0 END) as "data-driven",
+	SUM(CASE WHEN (value = "diverse-team") THEN 1 ELSE 0 END) as "diverse-team",
+	SUM(CASE WHEN (value = "engages-community") THEN 1 ELSE 0 END) as "engages-community",
+	SUM(CASE WHEN (value = "engineering-driven") THEN 1 ELSE 0 END) as "engineering-driven",
+	SUM(CASE WHEN (value = "eq-iq") THEN 1 ELSE 0 END) as "eq-iq",
+	SUM(CASE WHEN (value = "fast-paced") THEN 1 ELSE 0 END) as "fast-paced",
+	SUM(CASE WHEN (value = "feedback") THEN 1 ELSE 0 END) as "feedback",
+	SUM(CASE WHEN (value = "flat-organization") THEN 1 ELSE 0 END) as "flat-organization",
+	SUM(CASE WHEN (value = "flex-hours") THEN 1 ELSE 0 END) as "flex-hours",
+	SUM(CASE WHEN (value = "friends-outside-work") THEN 1 ELSE 0 END) as "friends-outside-work",
+	SUM(CASE WHEN (value = "good-beer") THEN 1 ELSE 0 END) as "good-beer",
+	SUM(CASE WHEN (value = "impressive-teammates") THEN 1 ELSE 0 END) as "impressive-teammates",
+	SUM(CASE WHEN (value = "inclusive") THEN 1 ELSE 0 END) as "inclusive",
+	SUM(CASE WHEN (value = "internal-mobility") THEN 1 ELSE 0 END) as "internal-mobility", 
+	SUM(CASE WHEN (value = "internal-promotion") THEN 1 ELSE 0 END) as "internal-promotion",
+	SUM(CASE WHEN (value = "interns") THEN 1 ELSE 0 END) as "interns",
+	SUM(CASE WHEN (value = "junior-devs") THEN 1 ELSE 0 END) as "junior-devs",
+	SUM(CASE WHEN (value = "light-meetings") THEN 1 ELSE 0 END) as "light-meetings",
+	SUM(CASE WHEN (value = "lunch-together") THEN 1 ELSE 0 END) as "lunch-together",
+	SUM(CASE WHEN (value = "many-hats") THEN 1 ELSE 0 END) as "many-hats",
+	SUM(CASE WHEN (value = "new-tech") THEN 1 ELSE 0 END) as "new-tech",
+	SUM(CASE WHEN (value = "office-layout") THEN 1 ELSE 0 END) as "office-layout",
+	SUM(CASE WHEN (value = "open-communication") THEN 1 ELSE 0 END) as "open-communication",
+	SUM(CASE WHEN (value = "open-source") THEN 1 ELSE 0 END) as "open-source",
+	SUM(CASE WHEN (value = "pair-programs") THEN 1 ELSE 0 END) as "pair-programs",
+	SUM(CASE WHEN (value = "parents") THEN 1 ELSE 0 END) as "parents",
+	SUM(CASE WHEN (value = "personal-growth") THEN 1 ELSE 0 END) as "personal-growth",
+	SUM(CASE WHEN (value = "physical-wellness") THEN 1 ELSE 0 END) as "physical-wellness",
+	SUM(CASE WHEN (value = "product-driven") THEN 1 ELSE 0 END) as "product-driven",
+	SUM(CASE WHEN (value = "project-ownership") THEN 1 ELSE 0 END) as "project-ownership",
+	SUM(CASE WHEN (value = "psychologically-safe") THEN 1 ELSE 0 END) as "psychologically-safe",
+	SUM(CASE WHEN (value = "quality-code") THEN 1 ELSE 0 END) as "quality-code",
+	SUM(CASE WHEN (value = "rapid-growth") THEN 1 ELSE 0 END) as "rapid-growth",
+	SUM(CASE WHEN (value = "remote-ok") THEN 1 ELSE 0 END) as "remote-ok",
+	SUM(CASE WHEN (value = "retention") THEN 1 ELSE 0 END) as "retention",
+	SUM(CASE WHEN (value = "risk-taking") THEN 1 ELSE 0 END) as "risk-taking",
+	SUM(CASE WHEN (value = "safe-env") THEN 1 ELSE 0 END) as "safe-env",
+	SUM(CASE WHEN (value = "team-oriented") THEN 1 ELSE 0 END) as "team-oriented",
+	SUM(CASE WHEN (value = "worklife-balance") THEN 1 ELSE 0 END) as "worklife-balance"
+FROM 
+	keyvalues
+GROUP BY
+	company;
+
+67 ROWS,
+47 COLUMNS
+
+PART II
+---------------------------------------------------------------------
+
+1)No Subquery with DISTINCT
++----+-------------+----------+------------+------+---------------+------+---------+------+--------+----------+----------------------------------------------+
+| id | select_type | table    | partitions | type | possible_keys | key  | key_len | ref  | rows   | filtered | Extra                                        |
++----+-------------+----------+------------+------+---------------+------+---------+------+--------+----------+----------------------------------------------+
+|  1 | SIMPLE      | caltrans | NULL       | ALL  | PRIMARY       | NULL | NULL    | NULL | 101096 |    20.99 | Using where; Using temporary; Using filesort |
++----+-------------+----------+------------+------+---------------+------+---------+------+--------+----------+----------------------------------------------+
+
+2)SELECT within a SELECT
++----+-------------+------------+------------+------+---------------+------+---------+------+--------+----------+----------------------------------------------+
+| id | select_type | table      | partitions | type | possible_keys | key  | key_len | ref  | rows   | filtered | Extra                                        |
++----+-------------+------------+------------+------+---------------+------+---------+------+--------+----------+----------------------------------------------+
+|  1 | PRIMARY     | <derived2> | NULL       | ALL  | NULL          | NULL | NULL    | NULL |   2357 |   100.00 | Using temporary; Using filesort              |
+|  2 | DERIVED     | caltrans   | NULL       | ALL  | PRIMARY       | NULL | NULL    | NULL | 101096 |     2.33 | Using where; Using temporary; Using filesort |
++----+-------------+------------+------------+------+---------------+------+---------+------+--------+----------+----------------------------------------------+
+
+3)JOIN as a Filter
++----+-------------+------------+------------+------+---------------+-------------+---------+---------------+--------+----------+----------------------------------------------+
+| id | select_type | table      | partitions | type | possible_keys | key         | key_len | ref           | rows   | filtered | Extra                                        |
++----+-------------+------------+------------+------+---------------+-------------+---------+---------------+--------+----------+----------------------------------------------+
+|  1 | PRIMARY     | <derived2> | NULL       | ALL  | NULL          | NULL        | NULL    | NULL          |  23640 |   100.00 | Using temporary; Using filesort              |
+|  2 | DERIVED     | c          | NULL       | ALL  | PRIMARY       | NULL        | NULL    | NULL          | 101096 |     2.33 | Using where; Using temporary; Using filesort |
+|  2 | DERIVED     | <derived3> | NULL       | ref  | <auto_key0>   | <auto_key0> | 8       | hw2.c.highway |     10 |   100.00 | NULL                                         |
+|  3 | DERIVED     | caltrans   | NULL       | ALL  | PRIMARY       | NULL        | NULL    | NULL          | 101096 |     2.33 | Using where; Using temporary                 |
++----+-------------+------------+------------+------+---------------+-------------+---------+---------------+--------+----------+----------------------------------------------+
+
+4)Using an IN Subquery as a Filter
++----+--------------+-------------+------------+--------+---------------+------------+---------+--------------------------+--------+----------+----------------------------------------------+
+| id | select_type  | table       | partitions | type   | possible_keys | key        | key_len | ref                      | rows   | filtered | Extra                                        |
++----+--------------+-------------+------------+--------+---------------+------------+---------+--------------------------+--------+----------+----------------------------------------------+
+|  1 | PRIMARY      | <derived2>  | NULL       | ALL    | NULL          | NULL       | NULL    | NULL                     |   2357 |   100.00 | Using temporary; Using filesort              |
+|  2 | DERIVED      | c           | NULL       | ALL    | PRIMARY       | NULL       | NULL    | NULL                     | 101096 |     2.33 | Using where; Using temporary; Using filesort |
+|  2 | DERIVED      | <subquery3> | NULL       | eq_ref | <auto_key>    | <auto_key> | 265     | hw2.c.highway,hw2.c.area |      1 |   100.00 | NULL                                         |
+|  3 | MATERIALIZED | caltrans    | NULL       | ALL    | NULL          | NULL       | NULL    | NULL                     | 101096 |     2.33 | Using where                                  |
++----+--------------+-------------+------------+--------+---------------+------------+---------+--------------------------+--------+----------+----------------------------------------------+
+
+5)Formal Left Semi-join
++----+-------------+------------+------------+------+---------------+------+---------+------+--------+----------+----------------------------------------------+
+| id | select_type | table      | partitions | type | possible_keys | key  | key_len | ref  | rows   | filtered | Extra                                        |
++----+-------------+------------+------------+------+---------------+------+---------+------+--------+----------+----------------------------------------------+
+|  1 | PRIMARY     | <derived2> | NULL       | ALL  | NULL          | NULL | NULL    | NULL |   2357 |   100.00 | Using temporary; Using filesort              |
+|  2 | DERIVED     | c          | NULL       | ALL  | PRIMARY       | NULL | NULL    | NULL | 101096 |     2.33 | Using where; Using temporary; Using filesort |
+|  3 | SUBQUERY    | caltrans   | NULL       | ALL  | NULL          | NULL | NULL    | NULL | 101096 |     2.33 | Using where                                  |
++----+-------------+------------+------------+------+---------------+------+---------+------+--------+----------+----------------------------------------------+
+
+REFLECTION:
+Method 2 and 5 are the most efficient.
+According to the HW2 solution, the time of each method is: 0.23s, 0.17s, 0.33s, 0.65s, and 0.16s respectively.
+Based on this result, method 2 and 5 takes the least time to finish the task.
+
+Efficiency is defined through a combination of time complexity and space complexity.
+
+"rows" column refers to the number of rows MySQL believes it must examine to execute the query.
+"filtered" column refers to an estimated percentage of table rows that will be filtered by the table condition. 
+i.e. rows shows the estimated number of rows examined and rows × filtered / 100 shows the number of rows that will be joined with previous tables.
+Therefore, less "rows" indicates less operation the query needs to perform, and less "filtered" number indicates an effective filter performed by the query,
+which thus lead to higher efficiency. Based on this observation, method 2 and 5 are the most efficient.
+
+In the "Extra" column, "using temporary" and "using filesort" slow down the query, while "using where" boosts the efficiency by using index search.
+
+While method 5 is more efficient than 2 by the scale of time, method 5 has one more subquery than method 2 (select_type column). 
+Therefore, method 2 is more spatially efficient. 
+Overall, Method 2 and 5 are the most efficient among the five.
+
+
+
+
+PART III
+---------------------------------------------------------------------
+1) 100,000 times
+For each tuple on the left-hand side, a right-hand side tuple is scanned.
+Therefore, relation R is scanned 100,000 times.
+
+2a) 1 time
+For each tuple in L, if an index can be found, the corresponding tuple in R is scanned.
+Therefore, each tuple in both L and R is only scanned once.
+
+2b) Suppose on there are bL many blocks, and nL many tuples in relation L.
+Suppose the height of the B+-tree is h.
+In the worst case, there should be:
+bL + nL * (h + 1)
+many block transfers.
+
+bL refers the number of block transfers on the left-hand side.
+In the worst case, for each tuple on the left-hand side, there is a block transfer on the right-hand side [nL * (h + 1)].
+Therefore, there are bL + nL * (h + 1) block transfers in total.
+
+3)
+The answer depends on several factors.
+Generally, indexed nested-join loop is faster than block nested-join loop, which is faster than naive nested-join loop.
+However, factors such as disk I/O, RAM size, and index construction time would affect the result.
+If the RAM size is large enough to fit the whole data of the right-hand side, block nested-join loop is preferable towards index nested-join loop.
+Also in this case, naive nested-join loop is no different from block nested-join loop.
+If the RAM size is large enough to fit the left-hand side data but not able to fit the right-hand side, index nested-join loop is the most efficient.
+If the RAM size cannot even fit the left-hand side data, block nested-join loop is the most efficient, since in such case, 
+scanning the left-hand side data also needs disk I/O.
+If the disk I/O is extremely fast and considered trivial, while on the other hand the index construction process is considerably time-consuming,
+block nested-join loop is also more efficient than index nested-join loop.
+Otherwise, index nested-join loop is the most efficient.
+
+4）
+Proof: 
+Left-hand side: 𝐸1 ⋈θ (𝐸2 − 𝐸3 ) = 𝜎θ (𝐸1 × (𝐸2 − 𝐸3 ) = 𝜎θ(𝐸1 × 𝐸2 − 𝐸1 × 𝐸3 )
+Right-hand side 𝐸1 ⋈θ 𝐸2 − 𝐸1 ⋈θ 𝐸3 = 𝜎θ (𝐸1 × 𝐸2 ) − 𝜎θ (𝐸1 × 𝐸3 ) = 𝜎θ (𝐸1 × 𝐸2 − 𝐸1 × 𝐸3 )
+Apparently, both expressions represent the same relation.
+
+For performance improvement, consider a case where E2 and E3 have a large number of tuples/records,
+but E2-E3 has few tuples. In such cases, performing E2-E3 first will considerably boost the efficiency of the query.
+
+For example:
+E1: days
+1	SUN
+2	MON
+3	TUE
+4	WED
+5 	THU
+6	FRI
+7	SAT
+
+E2: Schedule1
+SUN	Church
+MON	Work
+TUE	Work
+WED	Work
+THU	Party
+FRI	Work
+
+
+E3: Schedule2
+TUE	Work
+WED	Work
+THU	Party
+FRI	Work
+SAT	Rest
+
+E2-E3:
+SUN	Church
+MON	Work
+
+E1 JOIN E2:
+1	SUN	Church
+2	MON	Work
+3	TUE	Work
+4	WED	Work
+5	THU	Party
+
+E1 JOIN E3:
+3	TUE	Work
+4	WED	Work
+5	THU	Party
+6	FRI	Work
+7	SAT	Rest
+
+Both [E1 JOIN (E2-E3)] and [(E1 JOIN E2)-(E1 JOIN E3)] returns
+1	SUN	Church
+2	MON	Work
+E2-E3 only has two rows, while E2 and E3 have 6, 5 rows respectively.
+Therefore, [E1 JOIN (E2-E3)] is much more efficient.
+
+5) 
+R:
+video_id	comment
+1		XXX
+1		YYY
+
+S:
+video_id	comment
+1		XXX
+
+R-S:
+video_id 	comment
+1		YYY
+
+Projection on video_id (R):
+video_id
+1
+1
+
+Projection on video_id (S):
+video_id
+1
+
+First expression returns:
+video_id
+1
+
+Second expression returns:
+empty set 
+
+
+
+
+
+
+
+

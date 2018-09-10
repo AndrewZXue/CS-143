@@ -1,0 +1,10 @@
+Zhouyang Xue
+104629708
+CS143 HW #5
+
+1. 
+A) Yes, it is serial, because the next transaction starts only after the previous transaction ends.
+B) Yes, it is conflict serializable, because it is serial.
+[A schedule is conflict serializable if it is serial, or if it is equivalent
+in result to a serial schedule.]
+

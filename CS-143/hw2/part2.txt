@@ -1,0 +1,4 @@
+2.
+Natural Join is not a subset of Inner Join.
+A natural join can be an inner join, but it can also be an outer join.
+Therefore, this Venn Diagram is incorrect.

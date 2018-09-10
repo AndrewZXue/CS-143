@@ -1,0 +1,1 @@
+This project 1B is divided into database part and php part for me and my partner.
